@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(ls /c/Users/HP245-G8/aura-cosmetics/node_modules/@types/minimatch 2>&1 || echo \"NOT FOUND\" && npm ls minimatch 2>&1 | head -10)",
+      "Bash(npx tsc:*)",
+      "Bash(pkill -f \"next dev\" 2>/dev/null; sleep 2; echo \"killed\")",
+      "Bash(pkill -f \"next dev\" 2>/dev/null; pkill -f \"node.*next\" 2>/dev/null; sleep 3; rm -f /c/Users/HP245-G8/aura-cosmetics/.next/dev/lock 2>/dev/null; echo \"cleaned\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/)",
+      "Read(//tmp/**)",
+      "Bash(taskkill /F /IM node.exe 2>/dev/null || true; sleep 4; rm -f /c/Users/HP245-G8/aura-cosmetics/.next/dev/lock 2>/dev/null; echo \"done\")",
+      "Bash(taskkill /F /IM node.exe /T 2>&1; sleep 5; echo \"killed\")"
+    ]
+  }
+}
