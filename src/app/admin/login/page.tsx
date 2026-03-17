@@ -24,7 +24,6 @@ export default function AdminLoginPage() {
     setIsLoading(true)
 
     // Simple auth check (in production, use Supabase Auth)
-    const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@auracosmetics.co'
     await new Promise(r => setTimeout(r, 800)) // Simulate auth delay
 
     // For demo, accept any valid email + password combo matching env vars

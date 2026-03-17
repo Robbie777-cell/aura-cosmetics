@@ -59,7 +59,13 @@ export default function GaleriaPage() {
         </div>
 
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '3rem 1.5rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '3rem', alignItems: 'flex-start' }}>
+          <style>{`
+            @media (max-width: 900px) {
+              .galeria-grid { grid-template-columns: 1fr !important; }
+              .galeria-upload { position: static !important; }
+            }
+          `}</style>
+          <div className="galeria-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '3rem', alignItems: 'flex-start' }}>
             {/* Gallery */}
             <div>
               <h2 style={{
@@ -75,7 +81,7 @@ export default function GaleriaPage() {
             </div>
 
             {/* Upload form */}
-            <div style={{ position: 'sticky', top: '88px' }}>
+            <div className="galeria-upload" style={{ position: 'sticky', top: '88px' }}>
               <div style={{
                 backgroundColor: 'white',
                 borderRadius: '20px',

@@ -98,6 +98,11 @@ h1, h2, h3, h4, h5, h6 {
   50% { transform: translateY(-6px); }
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .animate-fade-in { animation: fadeIn 0.4s ease-out; }
 .animate-slide-right { animation: slideInRight 0.3s ease-out; }
 .animate-float { animation: float 3s ease-in-out infinite; }

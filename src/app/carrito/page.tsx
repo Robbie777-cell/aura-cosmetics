@@ -80,7 +80,13 @@ export default function CarritoPage() {
             Mi Carrito
           </h1>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem', alignItems: 'flex-start' }}>
+          <style>{`
+            @media (max-width: 768px) {
+              .carrito-grid { grid-template-columns: 1fr !important; }
+              .carrito-summary { position: static !important; }
+            }
+          `}</style>
+          <div className="carrito-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem', alignItems: 'flex-start' }}>
             {/* Items */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {items.map(item => (
@@ -135,7 +141,7 @@ export default function CarritoPage() {
             </div>
 
             {/* Summary */}
-            <div style={{ backgroundColor: 'white', borderRadius: '16px', padding: '1.5rem', boxShadow: '0 1px 6px rgba(61,44,44,0.07)', position: 'sticky', top: '88px' }}>
+            <div className="carrito-summary" style={{ backgroundColor: 'white', borderRadius: '16px', padding: '1.5rem', boxShadow: '0 1px 6px rgba(61,44,44,0.07)', position: 'sticky', top: '88px' }}>
               <h2 style={{ fontFamily: 'var(--font-cormorant, serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--aura-deep)', marginBottom: '1.5rem' }}>
                 Resumen
               </h2>

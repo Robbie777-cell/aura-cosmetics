@@ -60,21 +60,38 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--aura-cream)' }}>
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(61,44,44,0.4)',
+            zIndex: 29,
+            display: 'none',
+          }}
+          className="admin-mobile-overlay"
+        />
+      )}
+
       {/* Sidebar */}
-      <aside style={{
-        width: '240px',
-        backgroundColor: 'white',
-        borderRight: '1px solid var(--aura-blush)',
-        display: 'flex',
-        flexDirection: 'column',
-        flexShrink: 0,
-        position: 'fixed',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        zIndex: 30,
-        transition: 'transform 0.3s ease',
-      }}>
+      <aside
+        className={sidebarOpen ? 'admin-sidebar admin-sidebar-open' : 'admin-sidebar'}
+        style={{
+          width: '240px',
+          backgroundColor: 'white',
+          borderRight: '1px solid var(--aura-blush)',
+          display: 'flex',
+          flexDirection: 'column',
+          flexShrink: 0,
+          position: 'fixed',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          zIndex: 30,
+          transition: 'transform 0.3s ease',
+        }}>
         {/* Logo */}
         <div style={{
           padding: '1.5rem 1.25rem',
@@ -183,7 +200,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main content */}
-      <main style={{
+      <main className="admin-main" style={{
         flex: 1,
         marginLeft: '240px',
         minHeight: '100vh',
@@ -200,14 +217,30 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-          <h1 style={{
-            fontFamily: 'var(--font-cormorant, serif)',
-            fontSize: '1.375rem',
-            fontWeight: 600,
-            color: 'var(--aura-deep)',
-          }}>
-            {navItems.find(i => i.href === pathname)?.label || 'Admin'}
-          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="admin-menu-btn"
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '0.25rem',
+                color: 'var(--aura-deep)',
+                display: 'none',
+              }}
+            >
+              {sidebarOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+            <h1 style={{
+              fontFamily: 'var(--font-cormorant, serif)',
+              fontSize: '1.375rem',
+              fontWeight: 600,
+              color: 'var(--aura-deep)',
+            }}>
+              {navItems.find(i => i.href === pathname)?.label || 'Admin'}
+            </h1>
+          </div>
           <Link
             href="/"
             style={{
@@ -228,6 +261,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {children}
         </div>
       </main>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .admin-sidebar { transform: translateX(-100%); }
+          .admin-sidebar-open { transform: translateX(0); }
+          .admin-mobile-overlay { display: block !important; }
+          .admin-main { margin-left: 0 !important; }
+          .admin-menu-btn { display: flex !important; }
+        }
+      `}</style>
     </div>
   )
 }

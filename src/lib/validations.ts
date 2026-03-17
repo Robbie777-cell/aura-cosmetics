@@ -4,8 +4,14 @@ export const pedidoSchema = z.object({
   cliente_nombre: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
   cliente_tel: z
     .string()
-    .min(10, 'Ingresa un número de teléfono válido')
-    .regex(/^(\+57|57)?[\s-]?[0-9]{10}$/, 'Ingresa un número colombiano válido (ej: +57 3001234567)'),
+    .min(7, 'Ingresa un número de teléfono válido')
+    .refine(
+      (val) => {
+        const digits = val.replace(/[\s\-\(\)\+]/g, '')
+        return /^(57)?[0-9]{10}$/.test(digits)
+      },
+      'Ingresa un número colombiano válido (ej: +57 300 000 0000)'
+    ),
   cliente_email: z.string().email('Correo electrónico inválido').optional().or(z.literal('')),
   cliente_ciudad: z.string().min(2, 'Ingresa tu ciudad'),
   direccion: z.string().min(5, 'Ingresa tu dirección completa'),

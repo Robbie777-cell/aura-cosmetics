@@ -236,7 +236,7 @@ export default function Navbar() {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         @media (max-width: 768px) {
           .hidden-mobile { display: none !important; }
           .show-mobile { display: flex !important; }

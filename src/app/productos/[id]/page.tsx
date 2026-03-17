@@ -82,7 +82,12 @@ export default async function ProductoDetailPage({ params }: Props) {
 
         {/* Product detail */}
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '3rem 1.5rem' }}>
-          <div style={{
+          <style>{`
+            @media (max-width: 768px) {
+              .producto-detail-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+            }
+          `}</style>
+          <div className="producto-detail-grid" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '4rem',
