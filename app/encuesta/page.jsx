@@ -77,7 +77,7 @@ const QUESTIONS = [
 ];
 
 // ── Configuración ──────────────────────────────────────────
-const WA_NUMBERS = ["573043575709", "573044924545"];
+
 const EMAILJS_SERVICE_ID  = "service_fzhhoek";      // <-- reemplaza después de crear cuenta
 const EMAILJS_TEMPLATE_ID = "template_rjugw18";     // <-- reemplaza después de crear cuenta
 const EMAILJS_PUBLIC_KEY  = "1-NhcQ-SY7yolrACn";     // <-- reemplaza después de crear cuenta
@@ -119,16 +119,7 @@ async function sendEmailJS(answers) {
   }
 }
 
-function sendWhatsApp(answers) {
-  const summary = buildSummaryText(answers);
-  const text = encodeURIComponent(
-    `✨ *Nueva respuesta encuesta AURA* ✨\n\n${summary}\n\n_Enviado desde aura-cosmetics-mu.vercel.app/encuesta_`
-  );
-  // Abre WhatsApp para cada número en nueva pestaña
-  WA_NUMBERS.forEach((num) => {
-    window.open(`https://wa.me/${num}?text=${text}`, "_blank");
-  });
-}
+
 
 export default function Encuesta() {
   const [step, setStep] = useState(0);
@@ -180,8 +171,6 @@ export default function Encuesta() {
         q6: answers.q6 || "—",
       };
       setSending(true);
-      // Enviar WhatsApp (abre pestañas)
-      sendWhatsApp(finalAnswers);
       // Enviar emails
       await sendEmailJS(finalAnswers);
       setSending(false);
