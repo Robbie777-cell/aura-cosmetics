@@ -13,7 +13,6 @@ const QUESTIONS = [
 const SERVICE_ID  = "service_fzhhoek";
 const TEMPLATE_ID = "template_rjugw18";
 const PUBLIC_KEY  = "1-NhcQ-SY7yolrACn";
-const EMAILS = ["carolinamacias507@gmail.com", "robbieacp1016@gmail.com"];
 
 function buildSummary(answers) {
   const labels = { q1: "Edad", q2: "Categorías", q3: "Prioridad", q4: "Funcionalidades", q5: "Plataforma", q6: "Sugerencia" };
@@ -71,9 +70,7 @@ export default function Encuesta() {
       setSending(true);
       const summary = buildSummary(finalAnswers);
       try {
-        for (const email of EMAILS) {
-          await window.emailjs.send(SERVICE_ID, TEMPLATE_ID, { to_email: email, message: summary });
-        }
+        await window.emailjs.send(SERVICE_ID, TEMPLATE_ID, { message: summary });
       } catch (e) { console.error("EmailJS error:", e); }
       setSending(false);
       setStep(total);
